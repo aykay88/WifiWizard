@@ -491,6 +491,26 @@ public class WifiWizard extends CordovaPlugin {
         return true;
     }
 
+    private boolean getConnectedRSSI(CallbackContext callbackContext){
+            if(!wifiManager.isWifiEnabled()){
+                callbackContext.error("Wifi is disabled");
+                return false;
+            }
+
+            WifiInfo info = wifiManager.getConnectionInfo();
+
+            if(info == null){
+                callbackContext.error("Unable to read wifi info");
+                return false;
+            }
+
+            int ssid = info.getRssi();
+
+
+            callbackContext.success(""+ssid);
+            return true;
+        }
+
     /**
      * This method retrieves the current WiFi status
      *

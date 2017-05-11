@@ -248,6 +248,14 @@ var WifiWizard = {
         }
         cordova.exec(win, fail, 'WifiWizard', 'getConnectedSSID', []);
     },
+
+    getCurrentRSSI: function(win, fail) {
+        if (typeof win != "function") {
+            console.log("getCurrentRSSI first parameter must be a function to handle RSSI.");
+            return;
+        }
+        cordova.exec(win, fail, 'WifiWizard', 'getConnectedRSSI', []);
+    },
     
     getCurrentBSSID: function(win, fail) {
         if (typeof win != "function") {
